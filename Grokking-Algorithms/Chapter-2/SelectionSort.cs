@@ -1,38 +1,37 @@
 ﻿using System.Collections.Generic;
 
-namespace Chapter_2
+namespace Chapter_2;
+
+public static class SelectionSort
 {
-    public class SelectionSort
+    public static int[] SelectionSorting(List<int> arr)
     {
-        public int[] SelectionSorting(List<int> arr)
+        var newArr = new int[arr.Count];
+
+        for (int i = 0; i < newArr.Length; i++)
         {
-            var newArr = new int[arr.Count];
-
-            for (int i = 0; i < newArr.Length; i++)
-            {
-                var smallest = FindSmallest(arr);
-                newArr[i] = arr[smallest];
-                arr.RemoveAt(smallest);
-            }
-
-            return newArr;
+            var smallest = FindSmallest(arr);
+            newArr[i] = arr[smallest];
+            arr.RemoveAt(smallest);
         }
 
-        private static int FindSmallest(List<int> arr)
+        return newArr;
+    }
+
+    private static int FindSmallest(List<int> arr)
+    {
+        var smallest = arr[0];
+        var smallestIndex = 0;
+
+        for (int i = 0; i < arr.Count; i++)
         {
-            var smallest = arr[0];
-            var smallestIndex = 0;
-
-            for (int i = 0; i < arr.Count; i++)
+            if (arr[i] < smallest)
             {
-                if (arr[i] < smallest)
-                {
-                    smallest = arr[i];
-                    smallestIndex = i;
-                }
+                smallest = arr[i];
+                smallestIndex = i;
             }
-
-            return smallestIndex;
         }
+
+        return smallestIndex;
     }
 }

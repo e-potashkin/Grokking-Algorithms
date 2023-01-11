@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Chapter_5
+namespace Chapter_5;
+
+public class HashTables
 {
-    public class HashTables
+    private static readonly Dictionary<string, bool> _voted = new();
+
+    public string Check(string name)
     {
-        private static readonly Dictionary<string, bool> _voted = new Dictionary<string, bool>();
-        
-        public string Check(string name)
+        if (_voted.ContainsKey(name))
         {
-            if (_voted.ContainsKey(name))
-            {
-                return "kick them out!";
-            }
-            else
-            {
-                _voted.Add(name, true);
-                return "let them vote!";
-            }
+            return "kick them out!";
+        }
+        else
+        {
+            _voted.Add(name, true);
+            return "let them vote!";
         }
     }
 }
